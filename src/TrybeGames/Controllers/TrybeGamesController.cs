@@ -73,6 +73,7 @@ public class TrybeGamesController
         }
         try {
             var games = database.GetGamesPlayedBy(player);
+
             if (games.Count() == 0)
             {
                 Console.WriteLine("Pessoa jogadora não jogou nenhum jogo!");
