@@ -126,27 +126,42 @@ public class TrybeGamesController
   {
     Console.WriteLine("digite o nome do jogador:");
     var playerName = Console.ReadLine();
-    int playerId = database.Players.Any() ? database.Players.Max(p => p.Id ++) : 1;
+    int playerId = database.Players.Any() ? database.Players.Max(p => p.Id++) : 1;
     var newPlayer = new Player() { Name = playerName, Id = playerId };
     database.Players.Add(newPlayer);
+    Console.WriteLine("Player was added successfully");
 
   }
 
   // 2. Crie a funcionalidade de adicionar um novo estúdio de jogos ao banco de dados
   public void AddGameStudio()
   {
-   Console.WriteLine("digite o nome do estudio:");
+    Console.WriteLine("digite o nome do estudio:");
     var studioName = Console.ReadLine();
-    int studioId = database.GameStudios.Any() ? database.GameStudios.Max(p => p.Id ++) : 1;
+    int studioId = database.GameStudios.Any() ? database.GameStudios.Max(p => p.Id++) : 1;
     var newStudio = new GameStudio() { Name = studioName, Id = studioId };
     database.GameStudios.Add(newStudio);
+    Console.WriteLine("Studio was added successfully");
   }
 
   // 3. Crie a funcionalidade de adicionar novo Jogo ao Banco de dados
   public void AddGame()
   {
-    // implementar
-    Console.WriteLine("Ainda não é possível realizar essa funcionalidade!");
+    Console.WriteLine("digite o nome do game novo a ser adicionado:");
+    var gameName = Console.ReadLine();
+    Console.WriteLine("digite a releaseDate do novo jogo:");
+    var gameReleaseDate = Console.ReadLine();
+    Console.WriteLine("digite o gameType do jogo:");
+    GameType gameType = (GameType)Enum.Parse(typeof(GameType), Console.ReadLine(), true);
+    int gameId = database.GameStudios.Any() ? database.GameStudios.Max(p => p.Id++) : 1;
+    if (DateTime.TryParse(gameReleaseDate, out DateTime date))
+    {
+      var newGame = new Game() { Name = gameName, Id = gameId, GameType = gameType, ReleaseDate = date };
+      database.Games.Add(newGame);
+      Console.WriteLine("Game was added successfully");
+    }
+    Console.WriteLine("Something failed!!!!!!");
+
   }
 
   public void ChangeGameStudio(Game game)
