@@ -158,9 +158,7 @@ public class TrybeGamesController
     {
       var newGame = new Game() { Name = gameName, Id = gameId, GameType = gameType, ReleaseDate = date };
       database.Games.Add(newGame);
-      Console.WriteLine("Game was added successfully");
     }
-    Console.WriteLine("Something failed!!!!!!");
 
   }
 
